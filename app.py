@@ -31,9 +31,8 @@ class PyObjectId(ObjectId):
 
 class AirDataModel(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-    eco2: int = Field(...)
-    h2: int = Field(...)
-    ethanol: int = Field(...)
+    co2: int = Field(...)
+    voc: int = Field(...)
     timestamp: datetime = Field(default_factory=datetime.utcnow)
     class Config:
         allow_population_by_field_name = True
@@ -41,26 +40,23 @@ class AirDataModel(BaseModel):
         json_encoders = {ObjectId: str}
         schema_extra = {
             "example": {
-                "eco2": 2,
-                "h2": 3,
-                "ethanol": 7
+                "co2": 2,
+                "voc": 3,
             }
         }
 
 
 class UpdateAirDataModel(BaseModel):
-    eco2: Optional[int]
-    h2: Optional[int]
-    ethanol: Optional[int]
+    co2: Optional[int]
+    voc: Optional[int]
 
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
         schema_extra = {
             "example": {
-                "eco2": 2,
-                "h2": 3,
-                "ethanol": 7
+                "co2": 2,
+                "voc": 3,
             }
         }
 
